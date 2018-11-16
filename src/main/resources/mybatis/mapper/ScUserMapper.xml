@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yiscn.mapper.ScUserMapper">
+  <resultMap id="BaseResultMap" type="com.yiscn.entity.ScUser">
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="nickName" jdbcType="VARCHAR" property="nickname" />
+    <result column="gender" jdbcType="BIT" property="gender" />
+    <result column="city" jdbcType="VARCHAR" property="city" />
+    <result column="level" jdbcType="INTEGER" property="level" />
+    <result column="head" jdbcType="VARCHAR" property="head" />
+    <result column="openId" jdbcType="VARCHAR" property="openid" />
+    <result column="paragraph" jdbcType="INTEGER" property="paragraph" />
+    <result column="curTime" jdbcType="VARCHAR" property="curtime" />
+    <result column="integral" jdbcType="INTEGER" property="integral" />
+    <result column="heightVictory" jdbcType="INTEGER" property="heightvictory" />
+    <result column="nowVictory" jdbcType="INTEGER" property="nowvictory" />
+    <result column="allField" jdbcType="INTEGER" property="allfield" />
+    <result column="winField" jdbcType="INTEGER" property="winfield" />
+    <result column="winRate" jdbcType="VARCHAR" property="winrate" />
+    <result column="experience" jdbcType="INTEGER" property="experience" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, nickName, gender, city, level, head, openId, paragraph, curTime, integral, heightVictory, 
+    nowVictory, allField, winField, winRate, experience
+  </sql>
+  <select id="selectByExample" parameterType="com.yiscn.entity.ScUserExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sc_user
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.yiscn.entity.ScUserExample">
+    delete from sc_user
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.yiscn.entity.ScUser">
+    insert into sc_user (id, nickName, gender, 
+      city, level, head, 
+      openId, paragraph, curTime, 
+      integral, heightVictory, nowVictory, 
+      allField, winField, winRate, 
+      experience)
+    values (#{id,jdbcType=INTEGER}, #{nickname,jdbcType=VARCHAR}, #{gender,jdbcType=BIT}, 
+      #{city,jdbcType=VARCHAR}, #{level,jdbcType=INTEGER}, #{head,jdbcType=VARCHAR}, 
+      #{openid,jdbcType=VARCHAR}, #{paragraph,jdbcType=INTEGER}, #{curtime,jdbcType=VARCHAR}, 
+      #{integral,jdbcType=INTEGER}, #{heightvictory,jdbcType=INTEGER}, #{nowvictory,jdbcType=INTEGER}, 
+      #{allfield,jdbcType=INTEGER}, #{winfield,jdbcType=INTEGER}, #{winrate,jdbcType=VARCHAR}, 
+      #{experience,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yiscn.entity.ScUser">
+    insert into sc_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="nickname != null">
+        nickName,
+      </if>
+      <if test="gender != null">
+        gender,
+      </if>
+      <if test="city != null">
+        city,
+      </if>
+      <if test="level != null">
+        level,
+      </if>
+      <if test="head != null">
+        head,
+      </if>
+      <if test="openid != null">
+        openId,
+      </if>
+      <if test="paragraph != null">
+        paragraph,
+      </if>
+      <if test="curtime != null">
+        curTime,
+      </if>
+      <if test="integral != null">
+        integral,
+      </if>
+      <if test="heightvictory != null">
+        heightVictory,
+      </if>
+      <if test="nowvictory != null">
+        nowVictory,
+      </if>
+      <if test="allfield != null">
+        allField,
+      </if>
+      <if test="winfield != null">
+        winField,
+      </if>
+      <if test="winrate != null">
+        winRate,
+      </if>
+      <if test="experience != null">
+        experience,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="nickname != null">
+        #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null">
+        #{gender,jdbcType=BIT},
+      </if>
+      <if test="city != null">
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null">
+        #{level,jdbcType=INTEGER},
+      </if>
+      <if test="head != null">
+        #{head,jdbcType=VARCHAR},
+      </if>
+      <if test="openid != null">
+        #{openid,jdbcType=VARCHAR},
+      </if>
+      <if test="paragraph != null">
+        #{paragraph,jdbcType=INTEGER},
+      </if>
+      <if test="curtime != null">
+        #{curtime,jdbcType=VARCHAR},
+      </if>
+      <if test="integral != null">
+        #{integral,jdbcType=INTEGER},
+      </if>
+      <if test="heightvictory != null">
+        #{heightvictory,jdbcType=INTEGER},
+      </if>
+      <if test="nowvictory != null">
+        #{nowvictory,jdbcType=INTEGER},
+      </if>
+      <if test="allfield != null">
+        #{allfield,jdbcType=INTEGER},
+      </if>
+      <if test="winfield != null">
+        #{winfield,jdbcType=INTEGER},
+      </if>
+      <if test="winrate != null">
+        #{winrate,jdbcType=VARCHAR},
+      </if>
+      <if test="experience != null">
+        #{experience,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.yiscn.entity.ScUserExample" resultType="java.lang.Long">
+    select count(*) from sc_user
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update sc_user
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.nickname != null">
+        nickName = #{record.nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gender != null">
+        gender = #{record.gender,jdbcType=BIT},
+      </if>
+      <if test="record.city != null">
+        city = #{record.city,jdbcType=VARCHAR},
+      </if>
+      <if test="record.level != null">
+        level = #{record.level,jdbcType=INTEGER},
+      </if>
+      <if test="record.head != null">
+        head = #{record.head,jdbcType=VARCHAR},
+      </if>
+      <if test="record.openid != null">
+        openId = #{record.openid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.paragraph != null">
+        paragraph = #{record.paragraph,jdbcType=INTEGER},
+      </if>
+      <if test="record.curtime != null">
+        curTime = #{record.curtime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.integral != null">
+        integral = #{record.integral,jdbcType=INTEGER},
+      </if>
+      <if test="record.heightvictory != null">
+        heightVictory = #{record.heightvictory,jdbcType=INTEGER},
+      </if>
+      <if test="record.nowvictory != null">
+        nowVictory = #{record.nowvictory,jdbcType=INTEGER},
+      </if>
+      <if test="record.allfield != null">
+        allField = #{record.allfield,jdbcType=INTEGER},
+      </if>
+      <if test="record.winfield != null">
+        winField = #{record.winfield,jdbcType=INTEGER},
+      </if>
+      <if test="record.winrate != null">
+        winRate = #{record.winrate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.experience != null">
+        experience = #{record.experience,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update sc_user
+    set id = #{record.id,jdbcType=INTEGER},
+      nickName = #{record.nickname,jdbcType=VARCHAR},
+      gender = #{record.gender,jdbcType=BIT},
+      city = #{record.city,jdbcType=VARCHAR},
+      level = #{record.level,jdbcType=INTEGER},
+      head = #{record.head,jdbcType=VARCHAR},
+      openId = #{record.openid,jdbcType=VARCHAR},
+      paragraph = #{record.paragraph,jdbcType=INTEGER},
+      curTime = #{record.curtime,jdbcType=VARCHAR},
+      integral = #{record.integral,jdbcType=INTEGER},
+      heightVictory = #{record.heightvictory,jdbcType=INTEGER},
+      nowVictory = #{record.nowvictory,jdbcType=INTEGER},
+      allField = #{record.allfield,jdbcType=INTEGER},
+      winField = #{record.winfield,jdbcType=INTEGER},
+      winRate = #{record.winrate,jdbcType=VARCHAR},
+      experience = #{record.experience,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

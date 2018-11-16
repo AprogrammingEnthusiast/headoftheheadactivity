@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yiscn.mapper.ScRobotConfigMapper">
+  <resultMap id="BaseResultMap" type="com.yiscn.entity.ScRobotConfig">
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="robotName" jdbcType="VARCHAR" property="robotname" />
+    <result column="robotHead" jdbcType="VARCHAR" property="robothead" />
+    <result column="robotArea" jdbcType="INTEGER" property="robotarea" />
+    <result column="robotRate" jdbcType="INTEGER" property="robotrate" />
+    <result column="robotIsUse" jdbcType="BIT" property="robotisuse" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, robotName, robotHead, robotArea, robotRate, robotIsUse
+  </sql>
+  <select id="selectByExample" parameterType="com.yiscn.entity.ScRobotConfigExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sc_robot_config
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.yiscn.entity.ScRobotConfigExample">
+    delete from sc_robot_config
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.yiscn.entity.ScRobotConfig">
+    insert into sc_robot_config (id, robotName, robotHead, 
+      robotArea, robotRate, robotIsUse
+      )
+    values (#{id,jdbcType=INTEGER}, #{robotname,jdbcType=VARCHAR}, #{robothead,jdbcType=VARCHAR}, 
+      #{robotarea,jdbcType=INTEGER}, #{robotrate,jdbcType=INTEGER}, #{robotisuse,jdbcType=BIT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.yiscn.entity.ScRobotConfig">
+    insert into sc_robot_config
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="robotname != null">
+        robotName,
+      </if>
+      <if test="robothead != null">
+        robotHead,
+      </if>
+      <if test="robotarea != null">
+        robotArea,
+      </if>
+      <if test="robotrate != null">
+        robotRate,
+      </if>
+      <if test="robotisuse != null">
+        robotIsUse,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="robotname != null">
+        #{robotname,jdbcType=VARCHAR},
+      </if>
+      <if test="robothead != null">
+        #{robothead,jdbcType=VARCHAR},
+      </if>
+      <if test="robotarea != null">
+        #{robotarea,jdbcType=INTEGER},
+      </if>
+      <if test="robotrate != null">
+        #{robotrate,jdbcType=INTEGER},
+      </if>
+      <if test="robotisuse != null">
+        #{robotisuse,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.yiscn.entity.ScRobotConfigExample" resultType="java.lang.Long">
+    select count(*) from sc_robot_config
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update sc_robot_config
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.robotname != null">
+        robotName = #{record.robotname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.robothead != null">
+        robotHead = #{record.robothead,jdbcType=VARCHAR},
+      </if>
+      <if test="record.robotarea != null">
+        robotArea = #{record.robotarea,jdbcType=INTEGER},
+      </if>
+      <if test="record.robotrate != null">
+        robotRate = #{record.robotrate,jdbcType=INTEGER},
+      </if>
+      <if test="record.robotisuse != null">
+        robotIsUse = #{record.robotisuse,jdbcType=BIT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update sc_robot_config
+    set id = #{record.id,jdbcType=INTEGER},
+      robotName = #{record.robotname,jdbcType=VARCHAR},
+      robotHead = #{record.robothead,jdbcType=VARCHAR},
+      robotArea = #{record.robotarea,jdbcType=INTEGER},
+      robotRate = #{record.robotrate,jdbcType=INTEGER},
+      robotIsUse = #{record.robotisuse,jdbcType=BIT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

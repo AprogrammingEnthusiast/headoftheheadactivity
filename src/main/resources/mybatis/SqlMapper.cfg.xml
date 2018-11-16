@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+		PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<!--顺序
+	"configuration" must match "(properties?,settings?,typeAliases?,typeHandlers?,objectFactory?,objectWrapperFactory?,reflectorFactory?,plugins?,environments?,databaseIdProvider?,mappers?
+	-->
+	<!--null也映射-->
+	<settings>
+		<setting name="callSettersOnNulls" value="true"/>
+		<!--二级缓存,mybatis-spring 1.3以后，可以直接在SqlSessionFactoryBean配置，无需使用mybatis的xml形式-->
+	<!--	<setting name="cacheEnabled" value="false" />-->
+	</settings>
+	<!-- 配置分页插件 -->
+	<plugins>
+		<!--mybatis分页插件-->
+		<plugin interceptor="com.github.pagehelper.PageHelper">
+			<property name="dialect" value="mysql"/>
+			<property name="offsetAsPageNum" value="false"/>
+			<property name="rowBoundsWithCount" value="false"/>
+			<property name="pageSizeZero" value="true"/>
+			<property name="reasonable" value="false"/>
+			<property name="supportMethodsArguments" value="false"/>
+			<property name="returnPageInfo" value="none"/>
+		</plugin>
+	</plugins>
+</configuration>

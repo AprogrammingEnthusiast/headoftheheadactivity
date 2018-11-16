@@ -1,0 +1,96 @@
+server:
+  port: 80
+spring:
+  datasource:
+    username: root
+    password: root
+    url: jdbc:mysql://127.0.0.1:3306/sports_college?useSSL=false&useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    druid:
+      initial-size: 5
+      max-active: 50
+      min-idle: 5
+      max-wait: 60000
+      pool-prepared-statements: false
+      max-pool-prepared-statement-per-connection-size: -1
+      validation-query: true
+      validation-query-timeout: 500
+      test-on-borrow: false
+      test-on-return: false
+      test-while-idle: true
+      filters: stat
+  cache:
+    type: redis
+  redis:
+    host: localhost
+    timeout: 30s
+    port: 6379
+mybatis:
+  config-location: classpath:mybatis/SqlMapper.cfg.xml
+  mapper-locations: classpath:mybatis/mapper/*.xml
+weixin:
+  app-id: wx512446c8e8754859
+  app-secret: 86c312840eb2df865b85534a46e9d42a
+
+admin:
+  username: 123456
+  password: 123456
+
+initconfig:
+  matchingPVP: true
+  fiendPVP: true
+  learnPVP: false
+  experienceMap:
+    1: 50
+    2: 70
+    3: 90
+    4: 110
+    5: 130
+    6: 200
+    7: 250
+    8: 300
+    9: 350
+    10: 400
+    11: 450
+    12: 500
+    13: 550
+    14: 600
+    15: 650
+    16: 700
+    17: 750
+    18: 800
+    19: 850
+    20: 900
+    21: 1000
+    22: 1100
+    23: 1200
+    24: 1300
+    25: 1400
+    26: 1500
+    27: 1600
+    28: 1700
+    29: 1800
+    30: 1900
+    31: 2000
+    32: 2100
+    33: 2200
+    34: 2300
+    35: 2400
+    36: 2500
+    37: 2600
+    38: 2700
+    39: 2800
+    40: 2900
+    41: 4000
+    42: 4500
+    43: 5000
+    44: 5500
+    45: 6000
+    46: 6500
+    47: 7000
+    48: 7500
+    49: 8000
+    50: 8500
+
+
